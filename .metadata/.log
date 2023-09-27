@@ -56,3 +56,12 @@ Command-line arguments:  -os win32 -ws win32 -arch x86_64
 
 !ENTRY org.eclipse.cdt.core 1 0 2023-09-27 15:51:46.828
 !MESSAGE Indexed 'CV01' (4 sources, 6 headers) in 0.404 sec: 425 declarations; 600 references; 12 unresolved inclusions; 9 syntax errors; 301 unresolved names (23%)
+
+!ENTRY org.eclipse.core.resources 2 2 2023-09-27 15:56:47.842
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2023-09-27 15:56:47.842
+!MESSAGE The project description file (.project) for 'CV01' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2023-09-27 15:56:47.842
+!MESSAGE The project description file (.project) for 'CV1' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2023-09-27 15:56:47.842
+!MESSAGE The project description file (.project) for 'PC1' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
