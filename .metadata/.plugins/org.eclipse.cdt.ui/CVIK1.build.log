@@ -1,10 +1,244 @@
-16:13:38 **** Incremental Build of configuration Debug for project CVIK1 ****
+16:20:43 **** Incremental Build of configuration Debug for project CVIK1 ****
 make -j4 all 
-arm-none-eabi-size   CVIK1.elf 
-   text	   data	    bss	    dec	    hex	filename
-   4880	     12	   1564	   6456	   1938	CVIK1.elf
-Finished building: default.size.stdout
- 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0 -std=gnu11 -g3 -DDEBUG -DSTM32F030x8 -DUSE_FULL_LL_DRIVER -DHSE_VALUE=8000000 -DHSE_STARTUP_TIMEOUT=100 -DLSE_STARTUP_TIMEOUT=5000 -DLSE_VALUE=32768 -DHSI_VALUE=8000000 -DLSI_VALUE=40000 -DVDD_VALUE=3300 -DPREFETCH_ENABLE=1 -DINSTRUCTION_CACHE_ENABLE=0 -DDATA_CACHE_ENABLE=0 -c -I../Core/Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:45:1: error: unknown type name 'UART_HandleTypeDef'
+   45 | UART_HandleTypeDef huart2;
+      | ^~~~~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:81:3: warning: implicit declaration of function 'HAL_Init' [-Wimplicit-function-declaration]
+   81 |   HAL_Init();
+      |   ^~~~~~~~
+../Core/Src/main.c:106:11: warning: implicit declaration of function 'mDelay'; did you mean 'LL_mDelay'? [-Wimplicit-function-declaration]
+  106 |           mDelay(200);
+      |           ^~~~~~
+      |           LL_mDelay
+../Core/Src/main.c: In function 'SystemClock_Config':
+../Core/Src/main.c:123:3: error: unknown type name 'RCC_OscInitTypeDef'
+  123 |   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+      |   ^~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:124:3: error: unknown type name 'RCC_ClkInitTypeDef'
+  124 |   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+      |   ^~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:129:20: error: request for member 'OscillatorType' in something not a structure or union
+  129 |   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+      |                    ^
+../Core/Src/main.c:129:38: error: 'RCC_OSCILLATORTYPE_HSI' undeclared (first use in this function)
+  129 |   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+      |                                      ^~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:129:38: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:130:20: error: request for member 'HSIState' in something not a structure or union
+  130 |   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+      |                    ^
+../Core/Src/main.c:130:32: error: 'RCC_HSI_ON' undeclared (first use in this function)
+  130 |   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+      |                                ^~~~~~~~~~
+../Core/Src/main.c:131:20: error: request for member 'HSICalibrationValue' in something not a structure or union
+  131 |   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+      |                    ^
+../Core/Src/main.c:131:43: error: 'RCC_HSICALIBRATION_DEFAULT' undeclared (first use in this function)
+  131 |   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+      |                                           ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:132:20: error: request for member 'PLL' in something not a structure or union
+  132 |   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+      |                    ^
+../Core/Src/main.c:132:36: error: 'RCC_PLL_ON' undeclared (first use in this function); did you mean 'RCC_CR_PLLON'?
+  132 |   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+      |                                    ^~~~~~~~~~
+      |                                    RCC_CR_PLLON
+../Core/Src/main.c:133:20: error: request for member 'PLL' in something not a structure or union
+  133 |   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+      |                    ^
+../Core/Src/main.c:133:37: error: 'RCC_PLLSOURCE_HSI' undeclared (first use in this function); did you mean 'LL_RCC_PLLSOURCE_HSE'?
+  133 |   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+      |                                     ^~~~~~~~~~~~~~~~~
+      |                                     LL_RCC_PLLSOURCE_HSE
+../Core/Src/main.c:134:20: error: request for member 'PLL' in something not a structure or union
+  134 |   RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL12;
+      |                    ^
+../Core/Src/main.c:134:34: error: 'RCC_PLL_MUL12' undeclared (first use in this function); did you mean 'LL_RCC_PLL_MUL_2'?
+  134 |   RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL12;
+      |                                  ^~~~~~~~~~~~~
+      |                                  LL_RCC_PLL_MUL_2
+../Core/Src/main.c:135:20: error: request for member 'PLL' in something not a structure or union
+  135 |   RCC_OscInitStruct.PLL.PREDIV = RCC_PREDIV_DIV1;
+      |                    ^
+../Core/Src/main.c:135:34: error: 'RCC_PREDIV_DIV1' undeclared (first use in this function); did you mean 'LL_RCC_PREDIV_DIV_1'?
+  135 |   RCC_OscInitStruct.PLL.PREDIV = RCC_PREDIV_DIV1;
+      |                                  ^~~~~~~~~~~~~~~
+      |                                  LL_RCC_PREDIV_DIV_1
+../Core/Src/main.c:136:7: warning: implicit declaration of function 'HAL_RCC_OscConfig' [-Wimplicit-function-declaration]
+  136 |   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+      |       ^~~~~~~~~~~~~~~~~
+../Core/Src/main.c:136:48: error: 'HAL_OK' undeclared (first use in this function)
+  136 |   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+      |                                                ^~~~~~
+../Core/Src/main.c:143:20: error: request for member 'ClockType' in something not a structure or union
+  143 |   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+      |                    ^
+../Core/Src/main.c:143:33: error: 'RCC_CLOCKTYPE_HCLK' undeclared (first use in this function)
+  143 |   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+      |                                 ^~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:143:52: error: 'RCC_CLOCKTYPE_SYSCLK' undeclared (first use in this function)
+  143 |   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+      |                                                    ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:144:32: error: 'RCC_CLOCKTYPE_PCLK1' undeclared (first use in this function)
+  144 |                               |RCC_CLOCKTYPE_PCLK1;
+      |                                ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:145:20: error: request for member 'SYSCLKSource' in something not a structure or union
+  145 |   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+      |                    ^
+../Core/Src/main.c:145:36: error: 'RCC_SYSCLKSOURCE_PLLCLK' undeclared (first use in this function); did you mean 'LL_RCC_SYS_CLKSOURCE_PLL'?
+  145 |   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+      |                                    ^~~~~~~~~~~~~~~~~~~~~~~
+      |                                    LL_RCC_SYS_CLKSOURCE_PLL
+../Core/Src/main.c:146:20: error: request for member 'AHBCLKDivider' in something not a structure or union
+  146 |   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+      |                    ^
+../Core/Src/main.c:146:37: error: 'RCC_SYSCLK_DIV1' undeclared (first use in this function); did you mean 'LL_RCC_SYSCLK_DIV_1'?
+  146 |   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+      |                                     ^~~~~~~~~~~~~~~
+      |                                     LL_RCC_SYSCLK_DIV_1
+../Core/Src/main.c:147:20: error: request for member 'APB1CLKDivider' in something not a structure or union
+  147 |   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+      |                    ^
+../Core/Src/main.c:147:38: error: 'RCC_HCLK_DIV1' undeclared (first use in this function)
+  147 |   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+      |                                      ^~~~~~~~~~~~~
+../Core/Src/main.c:149:7: warning: implicit declaration of function 'HAL_RCC_ClockConfig' [-Wimplicit-function-declaration]
+  149 |   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1) != HAL_OK)
+      |       ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:149:47: error: 'FLASH_LATENCY_1' undeclared (first use in this function); did you mean 'LL_FLASH_LATENCY_1'?
+  149 |   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1) != HAL_OK)
+      |                                               ^~~~~~~~~~~~~~~
+      |                                               LL_FLASH_LATENCY_1
+../Core/Src/main.c: In function 'MX_USART2_UART_Init':
+../Core/Src/main.c:170:9: error: request for member 'Instance' in something not a structure or union
+  170 |   huart2.Instance = USART2;
+      |         ^
+../Core/Src/main.c:171:9: error: request for member 'Init' in something not a structure or union
+  171 |   huart2.Init.BaudRate = 38400;
+      |         ^
+../Core/Src/main.c:172:9: error: request for member 'Init' in something not a structure or union
+  172 |   huart2.Init.WordLength = UART_WORDLENGTH_8B;
+      |         ^
+../Core/Src/main.c:172:28: error: 'UART_WORDLENGTH_8B' undeclared (first use in this function)
+  172 |   huart2.Init.WordLength = UART_WORDLENGTH_8B;
+      |                            ^~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:173:9: error: request for member 'Init' in something not a structure or union
+  173 |   huart2.Init.StopBits = UART_STOPBITS_1;
+      |         ^
+../Core/Src/main.c:173:26: error: 'UART_STOPBITS_1' undeclared (first use in this function); did you mean 'LL_USART_STOPBITS_1'?
+  173 |   huart2.Init.StopBits = UART_STOPBITS_1;
+      |                          ^~~~~~~~~~~~~~~
+      |                          LL_USART_STOPBITS_1
+../Core/Src/main.c:174:9: error: request for member 'Init' in something not a structure or union
+  174 |   huart2.Init.Parity = UART_PARITY_NONE;
+      |         ^
+../Core/Src/main.c:174:24: error: 'UART_PARITY_NONE' undeclared (first use in this function); did you mean 'LL_USART_PARITY_NONE'?
+  174 |   huart2.Init.Parity = UART_PARITY_NONE;
+      |                        ^~~~~~~~~~~~~~~~
+      |                        LL_USART_PARITY_NONE
+../Core/Src/main.c:175:9: error: request for member 'Init' in something not a structure or union
+  175 |   huart2.Init.Mode = UART_MODE_TX_RX;
+      |         ^
+../Core/Src/main.c:175:22: error: 'UART_MODE_TX_RX' undeclared (first use in this function)
+  175 |   huart2.Init.Mode = UART_MODE_TX_RX;
+      |                      ^~~~~~~~~~~~~~~
+../Core/Src/main.c:176:9: error: request for member 'Init' in something not a structure or union
+  176 |   huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+      |         ^
+../Core/Src/main.c:176:27: error: 'UART_HWCONTROL_NONE' undeclared (first use in this function); did you mean 'LL_USART_HWCONTROL_NONE'?
+  176 |   huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+      |                           ^~~~~~~~~~~~~~~~~~~
+      |                           LL_USART_HWCONTROL_NONE
+../Core/Src/main.c:177:9: error: request for member 'Init' in something not a structure or union
+  177 |   huart2.Init.OverSampling = UART_OVERSAMPLING_16;
+      |         ^
+../Core/Src/main.c:177:30: error: 'UART_OVERSAMPLING_16' undeclared (first use in this function); did you mean 'LL_USART_OVERSAMPLING_16'?
+  177 |   huart2.Init.OverSampling = UART_OVERSAMPLING_16;
+      |                              ^~~~~~~~~~~~~~~~~~~~
+      |                              LL_USART_OVERSAMPLING_16
+../Core/Src/main.c:178:9: error: request for member 'Init' in something not a structure or union
+  178 |   huart2.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
+      |         ^
+../Core/Src/main.c:178:32: error: 'UART_ONE_BIT_SAMPLE_DISABLE' undeclared (first use in this function)
+  178 |   huart2.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
+      |                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:179:9: error: request for member 'AdvancedInit' in something not a structure or union
+  179 |   huart2.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+      |         ^
+../Core/Src/main.c:179:40: error: 'UART_ADVFEATURE_NO_INIT' undeclared (first use in this function)
+  179 |   huart2.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+      |                                        ^~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:180:7: warning: implicit declaration of function 'HAL_UART_Init'; did you mean 'LL_USART_Init'? [-Wimplicit-function-declaration]
+  180 |   if (HAL_UART_Init(&huart2) != HAL_OK)
+      |       ^~~~~~~~~~~~~
+      |       LL_USART_Init
+../Core/Src/main.c:180:33: error: 'HAL_OK' undeclared (first use in this function)
+  180 |   if (HAL_UART_Init(&huart2) != HAL_OK)
+      |                                 ^~~~~~
+../Core/Src/main.c: In function 'MX_GPIO_Init':
+../Core/Src/main.c:197:3: error: unknown type name 'GPIO_InitTypeDef'; did you mean 'LL_GPIO_InitTypeDef'?
+  197 |   GPIO_InitTypeDef GPIO_InitStruct = {0};
+      |   ^~~~~~~~~~~~~~~~
+      |   LL_GPIO_InitTypeDef
+../Core/Src/main.c:202:3: warning: implicit declaration of function '__HAL_RCC_GPIOC_CLK_ENABLE' [-Wimplicit-function-declaration]
+  202 |   __HAL_RCC_GPIOC_CLK_ENABLE();
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:203:3: warning: implicit declaration of function '__HAL_RCC_GPIOF_CLK_ENABLE' [-Wimplicit-function-declaration]
+  203 |   __HAL_RCC_GPIOF_CLK_ENABLE();
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:204:3: warning: implicit declaration of function '__HAL_RCC_GPIOA_CLK_ENABLE' [-Wimplicit-function-declaration]
+  204 |   __HAL_RCC_GPIOA_CLK_ENABLE();
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:207:3: warning: implicit declaration of function 'HAL_GPIO_WritePin'; did you mean 'LL_GPIO_WriteReg'? [-Wimplicit-function-declaration]
+  207 |   HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
+      |   ^~~~~~~~~~~~~~~~~
+      |   LL_GPIO_WriteReg
+../Core/Src/main.c:207:45: error: 'GPIO_PIN_RESET' undeclared (first use in this function)
+  207 |   HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
+      |                                             ^~~~~~~~~~~~~~
+../Core/Src/main.c:210:18: error: request for member 'Pin' in something not a structure or union
+  210 |   GPIO_InitStruct.Pin = B1_Pin;
+      |                  ^
+../Core/Src/main.c:211:18: error: request for member 'Mode' in something not a structure or union
+  211 |   GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
+      |                  ^
+../Core/Src/main.c:211:26: error: 'GPIO_MODE_IT_FALLING' undeclared (first use in this function)
+  211 |   GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
+      |                          ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:212:18: error: request for member 'Pull' in something not a structure or union
+  212 |   GPIO_InitStruct.Pull = GPIO_NOPULL;
+      |                  ^
+../Core/Src/main.c:212:26: error: 'GPIO_NOPULL' undeclared (first use in this function)
+  212 |   GPIO_InitStruct.Pull = GPIO_NOPULL;
+      |                          ^~~~~~~~~~~
+../Core/Src/main.c:213:3: warning: implicit declaration of function 'HAL_GPIO_Init'; did you mean 'LL_GPIO_Init'? [-Wimplicit-function-declaration]
+  213 |   HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
+      |   ^~~~~~~~~~~~~
+      |   LL_GPIO_Init
+../Core/Src/main.c:216:18: error: request for member 'Pin' in something not a structure or union
+  216 |   GPIO_InitStruct.Pin = LD2_Pin;
+      |                  ^
+../Core/Src/main.c:217:18: error: request for member 'Mode' in something not a structure or union
+  217 |   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+      |                  ^
+../Core/Src/main.c:217:26: error: 'GPIO_MODE_OUTPUT_PP' undeclared (first use in this function); did you mean 'LL_GPIO_MODE_OUTPUT'?
+  217 |   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+      |                          ^~~~~~~~~~~~~~~~~~~
+      |                          LL_GPIO_MODE_OUTPUT
+../Core/Src/main.c:218:18: error: request for member 'Pull' in something not a structure or union
+  218 |   GPIO_InitStruct.Pull = GPIO_NOPULL;
+      |                  ^
+../Core/Src/main.c:219:18: error: request for member 'Speed' in something not a structure or union
+  219 |   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+      |                  ^
+../Core/Src/main.c:219:27: error: 'GPIO_SPEED_FREQ_LOW' undeclared (first use in this function); did you mean 'LL_GPIO_SPEED_FREQ_LOW'?
+  219 |   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+      |                           ^~~~~~~~~~~~~~~~~~~
+      |                           LL_GPIO_SPEED_FREQ_LOW
+make: *** [Core/Src/subdir.mk:31: Core/Src/main.o] Error 1
+"make -j4 all" terminated with exit code 2. Build might be incomplete.
 
-16:13:38 Build Finished. 0 errors, 0 warnings. (took 260ms)
+16:20:44 Build Failed. 62 errors, 10 warnings. (took 694ms)
 
