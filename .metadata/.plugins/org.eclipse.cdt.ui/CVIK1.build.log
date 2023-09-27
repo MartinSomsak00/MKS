@@ -1,0 +1,32 @@
+16:08:55 **** Incremental Build of configuration Debug for project CVIK1 ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F030x8 -c -I../Core/Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:69:1: error: expected declaration specifiers before 'while'
+   69 | while (1)
+      | ^~~~~
+../Core/Src/main.c:122:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  122 | {
+      | ^
+../Core/Src/main.c:161:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  161 | {
+      | ^
+../Core/Src/main.c:196:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  196 | {
+      | ^
+../Core/Src/main.c:235:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  235 | {
+      | ^
+../Core/Src/main.c:262: error: expected '{' at end of input
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:53:13: warning: 'MX_GPIO_Init' declared 'static' but never defined [-Wunused-function]
+   53 | static void MX_GPIO_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:54:13: warning: 'MX_USART2_UART_Init' declared 'static' but never defined [-Wunused-function]
+   54 | static void MX_USART2_UART_Init(void);
+      |             ^~~~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j4 all" terminated with exit code 2. Build might be incomplete.
+
+16:08:56 Build Failed. 7 errors, 2 warnings. (took 362ms)
+
