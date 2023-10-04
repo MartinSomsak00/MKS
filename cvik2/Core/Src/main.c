@@ -58,34 +58,39 @@ static void MX_USART2_UART_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-void blikac(void)
- {
- static uint32_t delay;
+void blikac(void) {
+	static uint32_t delay;
 
- if (Tick > delay + LED_TIME_BLINK) {
- LL_GPIO_TogglePin(LED1_GPIO_Port,LED1_Pin);
- delay = Tick;
- }
- }
+	if (Tick > delay + LED_TIME_BLINK) {
+		LL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
+		delay = Tick;
+	}
+}
+
 
 
 void tlacitka(void) {
+	static uint32_t delay;
 	static uint32_t off_time;
-	static uint32_t old_s2;
-	uint32_t new_s2 = LL_GPIO_IsInputPinSet(S2_GPIO_Port, S2_Pin);
-	if (old_s2 && !new_s2) { // falling edge
-		off_time = Tick + LED_TIME_SHORT;
-		LL_GPIO_SetOutputPin(LED2_GPIO_Port, LED2_Pin);
-	}
-	old_s2 = new_s2;
 
-	static uint32_t old_s1;
-	uint32_t new_s1 = LL_GPIO_IsInputPinSet(S1_GPIO_Port, S1_Pin);
-	if (old_s1 && !new_s1) { // falling edge
-		off_time = Tick + LED_TIME_LONG;
-		LL_GPIO_SetOutputPin(LED2_GPIO_Port, LED2_Pin);
+	if (Tick > delay + 40) {
+
+		static uint32_t old_s2;
+		uint32_t new_s2 = LL_GPIO_IsInputPinSet(S2_GPIO_Port, S2_Pin);
+		if (old_s2 && !new_s2) { // falling edge
+			off_time = Tick + LED_TIME_SHORT;
+			LL_GPIO_SetOutputPin(LED2_GPIO_Port, LED2_Pin);
+		}
+		old_s2 = new_s2;
+
+		static uint32_t old_s1;
+		uint32_t new_s1 = LL_GPIO_IsInputPinSet(S1_GPIO_Port, S1_Pin);
+		if (old_s1 && !new_s1) { // falling edge
+			off_time = Tick + LED_TIME_LONG;
+			LL_GPIO_SetOutputPin(LED2_GPIO_Port, LED2_Pin);
+		}
+		old_s1 = new_s1;
 	}
-	old_s1 = new_s1;
 
 	if (Tick > off_time) {
 		LL_GPIO_ResetOutputPin(LED2_GPIO_Port, LED2_Pin);
