@@ -97,10 +97,10 @@ void uart_process_command(char* cmd)
 
 
 
-	else if (strcasecmp(token, "LED2") == 0)
+	else if (strcasecmp(token, "LED2") == 0)// Set/reset LED2
 	{
 		 token = strtok(NULL, " ");
-		 if (strcasecmp(token, "ON") == 0)
+		 if (strcasecmp(token, "ON") == 0)//LED1 ON
 		 {
 			 HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin,GPIO_PIN_SET);
 		 }
