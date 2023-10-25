@@ -73,10 +73,68 @@ int _write(int file, char const *buf, int n)
 
 void uart_process_command(char* cmd)
 {
-
-	printf("prijato: '%s'\n", cmd);
-
+	char *token;
+	token = strtok(cmd, " ");
+	if (strcasecmp(token, "HELLO") == 0)//test communication
+	{
+	 printf("Komunikace OK\n");
 	}
+
+
+	else if (strcasecmp(token, "LED1") == 0)// Set/reset LED1
+	{
+		token = strtok(NULL, " ");
+		if (strcasecmp(token, "ON") == 0)//LED1 ON
+		{
+			HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin,GPIO_PIN_SET);
+		}
+		else if (strcasecmp(token, "OFF")==0)//LED1 OFF
+		{
+			HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin,GPIO_PIN_RESET);
+		}
+		printf("OK\n");
+	}
+
+
+
+	else if (strcasecmp(token, "LED2") == 0)
+	{
+		 token = strtok(NULL, " ");
+		 if (strcasecmp(token, "ON") == 0)
+		 {
+			 HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin,GPIO_PIN_SET);
+		 }
+		 else if (strcasecmp(token, "OFF")==0)//LED1 OFF
+		 {
+			 HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin,GPIO_PIN_RESET);
+		 }
+		 printf("OK\n");
+	}
+
+
+
+	else if (strcasecmp(token, "STATUS") == 0)// Return LEDs state
+	{
+		if (HAL_GPIO_ReadPin(LED1_GPIO_Port,LED1_Pin))//LED1 ON
+		 {
+			 printf("LED1 ON\n");
+		 }
+		 else
+		 {
+			 printf("LED1 OFF\n");
+		 }
+		 if (HAL_GPIO_ReadPin(LED2_GPIO_Port,LED2_Pin))//LED1 ON
+		  {
+		 	 printf("LED2 ON\n");
+		  }
+		  else
+		  {
+		 	 printf("LED2 OFF\n");
+		  }
+	}
+
+}
+
 
 static void uart_byte_available(uint8_t c)
 {
