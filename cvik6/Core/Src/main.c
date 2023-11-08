@@ -113,7 +113,7 @@ int main(void)
 		/* USER CODE END WHILE */
 
 		/* USER CODE BEGIN 3 */
-		int16_t temp_18b20;
+		static int16_t temp_18b20;
 		if (HAL_GetTick() > last_tick + CONVERT_T_DELAY) {
 			OWConvertAll();
 			OWReadTemperature(&temp_18b20);
