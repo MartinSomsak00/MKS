@@ -1,0 +1,7 @@
+ExitOnError 1
+r
+h
+loadfile "C:\Temp\somsak\MKS\MKS\MCUX\lpcxpresso55s69_secure_faults_ns\Debug\lpcxpresso55s69_secure_faults_ns.hex" 0x10000 
+qc
+
+qc
