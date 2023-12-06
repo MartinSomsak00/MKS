@@ -19,17 +19,17 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "usb_device.h"
-
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <usbd_hid.h>
+#include <stdbool.h>
 #include <math.h>
 
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+extern USBD_HandleTypeDef hUsbDeviceFS;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -59,7 +59,66 @@ static void MX_USART3_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+static void step(int8_t x, int8_t y, bool btn) {
+	uint8_t buff[4];
+	if (btn) {
+		buff[0] = 1;
+	} else {
+		buff[0] = 0;
+	}
+	buff[1] = x;
+	buff[2] = -y;
+	buff[3] = 0;
+	USBD_HID_SendReport(&hUsbDeviceFS, buff, sizeof(buff));
+	HAL_Delay(USBD_HID_GetPollingInterval(&hUsbDeviceFS));
+}
+static void circle(int8_t radius, bool half) {
+	static float x = 0;
+	static float y = 0;
+	static float sx = 0;
+	static float sy = 0;
+	static float dx = 0;
+	static float dy = 0;
+	for (uint8_t i = 0; i <= 20; i++) {
+		x = radius * cosf(i * 2 * M_PI / 20);
+		y = radius * sinf(i * 2 * M_PI / 20);
+		dx = (x - sx);
+		dy = (y - sy);
+		if ((half) && (i >= 10)) {
+			step(dx, dy, half);
+		} else if ((half) && (i < 10)) {
+			step(0, 0, 0);
+			step(dx, dy, false);
+		} else {
+			step(dx, dy, true);
+		}
+		sx = x;
+		sy = y;
+		HAL_Delay(10);
+	}
+	step(0, 0, false);
 
+}
+void draw_smajlik() {
+	circle(100, false);
+	for (uint8_t i = 1; i < 5; i++) {
+		step(-4, -1, false);
+	}
+	circle(20, false);
+	for (uint8_t i = 1; i < 11; i++) {
+		step(-8, 0, false);
+	}
+	circle(20, false);
+	for (uint8_t i = 1; i < 5; i++) {
+		step(4, 0, false);
+	}
+	for (uint8_t i = 1; i < 5; i++) {
+		step(0, -13, true);
+	}
+
+	circle(50, true);
+
+}
 /* USER CODE END 0 */
 
 /**
@@ -94,6 +153,7 @@ int main(void)
   MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
 
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -101,7 +161,10 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
+	if (HAL_GPIO_ReadPin(USER_Btn_GPIO_Port, USER_Btn_Pin)) {
+		draw_smajlik();
+	}
+	HAL_Delay(100);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

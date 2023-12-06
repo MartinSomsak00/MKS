@@ -36,7 +36,7 @@
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
-extern USBD_HandleTypeDef hUsbDeviceFS;
+
 
 /* USER CODE END PFP */
 
