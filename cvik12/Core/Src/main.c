@@ -23,6 +23,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "lwip/apps/httpd.h"
 
 /* USER CODE END Includes */
 
@@ -61,7 +62,8 @@ void StartDefaultTask(void const * argument);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+extern void tcpecho_init(void);
+extern void telnet_init(void);
 /* USER CODE END 0 */
 
 /**
@@ -81,6 +83,7 @@ int main(void)
 
   /* USER CODE BEGIN Init */
 
+
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -94,6 +97,8 @@ int main(void)
   MX_GPIO_Init();
   MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
+
+
 
   /* USER CODE END 2 */
 
@@ -119,7 +124,11 @@ int main(void)
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
+
   /* add threads, ... */
+
+
+
   /* USER CODE END RTOS_THREADS */
 
   /* Start scheduler */
@@ -128,6 +137,9 @@ int main(void)
   /* We should never get here as control is now taken by the scheduler */
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+
+
+
   while (1)
   {
     /* USER CODE END WHILE */
@@ -300,6 +312,14 @@ void StartDefaultTask(void const * argument)
   /* init code for LWIP */
   MX_LWIP_Init();
   /* USER CODE BEGIN 5 */
+
+  /* Initialize tcp echo server */
+  tcpecho_init();
+  /* Initialize HTTP server */
+  httpd_init();
+  /* Initialize tcp echo server */
+  telnet_init();
+
   /* Infinite loop */
   for(;;)
   {
